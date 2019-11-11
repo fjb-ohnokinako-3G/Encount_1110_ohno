@@ -31,8 +31,6 @@ import java.util.Date
  */
 class MainActivity : AppCompatActivity() {
 
-    //companion object @JvmField public var cmnt = ""
-
     /**
      * 保存された画像のURI
      */
@@ -47,27 +45,17 @@ class MainActivity : AppCompatActivity() {
      */
     private var _longitude = 0.0
 
-    companion object @JvmField var come = ""
-    //val comment = findViewById<EditText>(R.id.commentInput) as EditText
-    /*
-    companion object {
-        @JvmStatic
-        var cmnt = ""
-        var aaaaa = "aa"
-    }*/
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         /**
-         * GET/POSTの投稿処理
+         * 投稿ボタン押すと・・・
          */
         // GETボタンとPOSTボタン取得
         val getButton = findViewById<Button>(R.id.getButton)
         val postButton = findViewById<Button>(R.id.postButton)
+        val commentInput = findViewById<EditText>(R.id.commentInput)
 
         // GETボタンがタップされた時
         getButton.setOnClickListener(View.OnClickListener {
@@ -78,26 +66,18 @@ class MainActivity : AppCompatActivity() {
         // POSTボタンが押された時
         postButton.setOnClickListener(View.OnClickListener {
 
-            // エディットテキストのテキストを取得
-            //if(comment.text != null){
-                // 取得したテキストをcmntに張り付ける
-              //  cmnt = comment.text.toString()
-            //}
 
-
+            SubClass.comecome = commentInput.getText().toString()
 
             val postTask = OkHttpPost()
             postTask.execute()
 
-            //val cmnt1 = findViewById<TextView>(R.id.http)
-            //http.text = cmnt1.toString()
-            //http.text = OkHttpPost.aaa
 
         })
         //ここまで
 
         /**
-         * 位置情報取得処理
+         * 位置情報取得
          */
         //LocationManagerオブジェクトを取得。
         val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager

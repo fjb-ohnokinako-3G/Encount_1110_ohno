@@ -15,16 +15,11 @@ import okhttp3.Response;
 
 public class OkHttpPost extends AsyncTask<String,String,String> {
 
-    //public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     //String json = "{\"name\":\"名前\", \"taxis\":\"分類\"}";
 
     public static String cmnt = "コメントです";
-    //String cmnt1 = MainActivity.cmnt;
-    public static String log1 = "";
-
-    //public static String aaa = "aa";
 
     @Override
     protected String doInBackground(String... strings) {
@@ -33,11 +28,13 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
 
         String url = "https://kinako.cf/api/pass_check.php";
 
+        String comecome = SubClass.comecome;
+
         //Map<String, String> formParamMap = new HashMap<>();
         //formParamMap.put("word", "abc");
         final FormBody.Builder formBuilder = new FormBody.Builder();
         //formParamMap.forEach(formBuilder::add);
-        formBuilder.add("word", cmnt);
+        formBuilder.add("word", comecome);
         RequestBody body = formBuilder.build();
 
         //RequestBody body = RequestBody.create(JSON, json);
@@ -49,7 +46,6 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
 
         try {
             Response response = client.newCall(request).execute();
-            //aaa = response.body().string();
             return response.body().string();
         } catch (IOException e) {
             e.printStackTrace();
