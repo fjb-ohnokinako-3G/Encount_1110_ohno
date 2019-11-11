@@ -50,7 +50,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         /**
-         * 投稿ボタン押すと・・・
+         * 投稿処理
+         * 投稿ボタン押すと動作する
          */
         // GETボタンとPOSTボタン取得
         val getButton = findViewById<Button>(R.id.getButton)
@@ -101,11 +102,11 @@ class MainActivity : AppCompatActivity() {
         //カメラアプリからの戻りでかつ撮影成功の場合
         if(requestCode == 200 && resultCode == RESULT_OK) {
             //撮影された画像のビットマップデータを取得。
-//			val bitmap = data?.getParcelableExtra<Bitmap>("data")
+            //val bitmap = data?.getParcelableExtra<Bitmap>("data")
             //画像を表示するImageViewを取得。
             val ivCamera = findViewById<ImageView>(R.id.ivCamera)
             //撮影された画像をImageViewに設定。
-//			ivCamera.setImageBitmap(bitmap)
+            //ivCamera.setImageBitmap(bitmap)
             //フィールドの画像URIをImageViewに設定。
             ivCamera.setImageURI(_imageUri)
         }

@@ -9,6 +9,10 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+/**
+ * GET通信(投稿)する時に利用するクラス
+ */
+
 public class OkHttpGet extends AsyncTask<String,String,String> {
     @Override
     protected String doInBackground(String... strings) {
