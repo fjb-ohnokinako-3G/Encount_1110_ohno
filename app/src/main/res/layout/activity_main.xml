@@ -98,6 +98,7 @@
         />
 
     <!--投稿タグ用テキストボックス-->
+    <!--
     <EditText
         android:id="@+id/tagInput"
         android:layout_width="match_parent"
@@ -110,6 +111,7 @@
         android:inputType="text"
         android:background="@drawable/partsdesign2"
         />
+        -->
 
     <!--ファイル名確認用-->
 
@@ -133,14 +135,6 @@
         android:layout_width="match_parent"
         android:layout_height="33dp"
         android:textSize="15sp" />
-
-    <TextView
-        android:id="@+id/http"
-        android:layout_width="match_parent"
-        android:layout_height="68dp"
-        android:layout_marginRight="5dp"
-        android:layout_weight="0.5"
-        android:maxLines="1" />
 
     <Button
         android:id="@+id/getButton"

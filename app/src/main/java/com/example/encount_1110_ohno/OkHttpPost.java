@@ -23,8 +23,8 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
     //jsonのサンプルデータ
     //String json = "{\"name\":\"名前\", \"taxis\":\"分類\"}";
 
-    //文字列のサンプルデータ
-    //public static String cmnt = "コメントです";
+    //送信するコメント内容の受け取り変数
+    public static String cmnt = "";
 
     @Override
     protected String doInBackground(String... strings) {
@@ -33,9 +33,6 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
 
         //アクセスするURL
         String url = "https://kinako.cf/api/pass_check.php";
-
-        //送信するコメント内容の受け取り
-        String comecome = SubClass.comecome;
 
             //Map<String, String> formParamMap = new HashMap<>();
             //formParamMap.put("word", "abc");
@@ -46,7 +43,7 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
             //formParamMap.forEach(formBuilder::add);
 
         //formに要素を追加
-        formBuilder.add("word", comecome);
+        formBuilder.add("word", cmnt);
         RequestBody body = formBuilder.build();
 
             //RequestBody body = RequestBody.create(JSON, json);

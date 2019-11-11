@@ -67,8 +67,7 @@ class MainActivity : AppCompatActivity() {
         // POSTボタンが押された時
         postButton.setOnClickListener(View.OnClickListener {
 
-
-            SubClass.comecome = commentInput.getText().toString()
+            OkHttpPost.cmnt = commentInput.getText().toString()
 
             val postTask = OkHttpPost()
             postTask.execute()
