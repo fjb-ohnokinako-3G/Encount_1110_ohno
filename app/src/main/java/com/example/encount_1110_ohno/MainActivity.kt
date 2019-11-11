@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         /**
-         * 投稿ボタン押すと・・・
+         * GET/POSTの投稿処理
          */
         // GETボタンとPOSTボタン取得
         val getButton = findViewById<Button>(R.id.getButton)
@@ -96,7 +96,9 @@ class MainActivity : AppCompatActivity() {
         })
         //ここまで
 
-        //追加
+        /**
+         * 位置情報取得処理
+         */
         //LocationManagerオブジェクトを取得。
         val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         //位置情報が更新された際のリスナオブジェクトを生成。
