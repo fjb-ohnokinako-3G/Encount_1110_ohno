@@ -44,6 +44,7 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
 
         //formに要素を追加
         formBuilder.add("word", cmnt);
+        //リクエストの内容にformを追加
         RequestBody body = formBuilder.build();
 
             //RequestBody body = RequestBody.create(JSON, json);
