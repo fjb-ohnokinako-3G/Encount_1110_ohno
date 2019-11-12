@@ -12,7 +12,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
- * POST通信(投稿)する時に利用するクラス
+ * POST通信(コメント投稿)する時に利用するクラス
  * OkHttp3を使用
  */
 

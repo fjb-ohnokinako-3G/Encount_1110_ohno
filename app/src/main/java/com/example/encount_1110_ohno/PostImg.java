@@ -19,6 +19,11 @@ import okhttp3.Response;
 
 import static okhttp3.MultipartBody.FORM;
 
+/**
+ * 写真をPOSTでサーバにアップロードする
+ * OkHttp3を使用
+ */
+
 public class PostImg extends AsyncTask<String, String, String> {
 
     //送信するコメント内容の受け取り変数
@@ -30,14 +35,16 @@ public class PostImg extends AsyncTask<String, String, String> {
     //POSTするファイルのパスを引数として貰っている
     protected String doInBackground(String... ImagePath) {
         //ポスト先のURL
+
+        //kinako.cfだと、なぜかうまくいかないからここではjunker.cfを使っている
         //String url = "https://kinako.cf/upimg/upimg.php";
         String url = "https://junker.cf/testimg/img.php";
 
-
+        //写真のパスを取得する
         //File file = new File(ImagePath[0]);
         File file = new File(uurl);
 
-        // ファイルの存在確認
+        //ファイルの存在確認(uurlの写真が存在するのか)
         if(file.exists()){
             System.out.println("ファイルが存在します。");
         }else{
