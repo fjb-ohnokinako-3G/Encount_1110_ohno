@@ -5,6 +5,7 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -29,7 +30,9 @@ public class PostImg extends AsyncTask<String, String, String> {
     //POSTするファイルのパスを引数として貰っている
     protected String doInBackground(String... ImagePath) {
         //ポスト先のURL
-        String url = "https://kinako.cf/upimg/upimg.php";
+        //String url = "https://kinako.cf/upimg/upimg.php";
+        String url = "https://junker.cf/testimg/img.php";
+
 
         //File file = new File(ImagePath[0]);
         File file = new File(uurl);
@@ -53,35 +56,53 @@ public class PostImg extends AsyncTask<String, String, String> {
                         RequestBody.create(MediaType.parse("image/jpg"), file))
                 .build();
 
-        OkHttpClient client = new OkHttpClient();
+        //OkHttpClient client = new OkHttpClient();
+        /*OkHttpClient client = new OkHttpClient()
+                .newBuilder()
+                .connectTimeout(10,TimeUnit.SECONDS)
+                .writeTimeout(10,TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .build();
+         */
 
+        //タイムアウトの設定
+        //デフォルトのままだとタイムアウトしてしまうので、少し大きい値を設定している
+        OkHttpClient client = new OkHttpClient()
+                .newBuilder()
+                .connectTimeout(10,TimeUnit.SECONDS)
+                .writeTimeout(10,TimeUnit.SECONDS)
+                .readTimeout(50, TimeUnit.SECONDS)
+                .build();
+
+        //リクエストの作成
         Request request = new Request.Builder()
                 .url(url)
                 .post(requestBody)
                 .build();
 
         String result="";
-        try {
-            /*Response response = client.newCall(request).execute();
+        /*try {
+            Response response = client.newCall(request).execute();
             if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
             {
                 result = response.body().string();
+            }
+        } catch (Exception e) {}
+        //return null;
+        return result;*/
 
-                Log.d("Debug", result);*/
-
-                Response response = client.newCall(request).execute();
-                return response.body().string();
-           // }
-        } catch (Exception e) {
+        try {
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
-        //return result;
     }
 
     @Override
     protected void onPostExecute(String str) {
         //結果をログに出力(レスポンスのbodyタグ内を出力する)
-        Log.d("Debug", str);
+        //Log.d("Debug", str);
     }
 }

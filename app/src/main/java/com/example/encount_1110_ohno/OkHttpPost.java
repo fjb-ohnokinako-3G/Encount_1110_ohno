@@ -62,7 +62,6 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 

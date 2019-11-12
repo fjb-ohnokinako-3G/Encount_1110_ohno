@@ -85,6 +85,7 @@ class MainActivity : AppCompatActivity() {
             //var pass = "content://com.android.externalstorage.documents/document/primary%3APictures%2F1573437349657.jpg"
             //var pass = "/sdcard/Pictures/1573437349657.jpg"
             PostImg.uurl = "/sdcard/Pictures/1573437349657.jpg"
+            //PostImg.uurl = "/sdcard/Download/sample1-s.jpg"
             val postTask = PostImg()
             postTask.execute()
 
