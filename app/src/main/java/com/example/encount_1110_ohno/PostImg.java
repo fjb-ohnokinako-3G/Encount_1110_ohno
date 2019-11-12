@@ -22,6 +22,8 @@ public class PostImg extends AsyncTask<String, String, String> {
 
     //送信するコメント内容の受け取り変数
     //public static String cmnt = "";
+    //写真のパスを受け取る変数
+    public static String uurl = "";
 
     @Override
     //POSTするファイルのパスを引数として貰っている
@@ -29,7 +31,15 @@ public class PostImg extends AsyncTask<String, String, String> {
         //ポスト先のURL
         String url = "https://kinako.cf/upimg/upimg.php";
 
-        File file = new File(ImagePath[0]);
+        //File file = new File(ImagePath[0]);
+        File file = new File(uurl);
+
+        // ファイルの存在確認
+        if(file.exists()){
+            System.out.println("ファイルが存在します。");
+        }else{
+            System.out.println("ファイルが存在しません。");
+        }
 
         //デバッグ用
         System.out.println(file);
@@ -37,7 +47,10 @@ public class PostImg extends AsyncTask<String, String, String> {
         //ここでPOSTする内容を設定　"image/jpg"の部分は送りたいファイルの形式に合わせて変更する
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("file", file.getName(), RequestBody.create(MediaType.parse("image/jpg"), file))
+                .addFormDataPart(
+                        "file",
+                        file.getName(),
+                        RequestBody.create(MediaType.parse("image/jpg"), file))
                 .build();
 
         OkHttpClient client = new OkHttpClient();
@@ -49,14 +62,21 @@ public class PostImg extends AsyncTask<String, String, String> {
 
         String result="";
         try {
-            Response response = client.newCall(request).execute();
+            /*Response response = client.newCall(request).execute();
             if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
             {
                 result = response.body().string();
-            }
-        } catch (Exception e) {}
 
-        return result;
+                Log.d("Debug", result);*/
+
+                Response response = client.newCall(request).execute();
+                return response.body().string();
+           // }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+        //return result;
     }
 
     @Override

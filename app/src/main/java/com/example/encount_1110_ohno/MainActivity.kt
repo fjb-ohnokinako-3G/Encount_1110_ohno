@@ -81,11 +81,12 @@ class MainActivity : AppCompatActivity() {
         postUpload.setOnClickListener(View.OnClickListener {
 
             //OkHttpPost.cmnt = commentInput.getText().toString()
-            //var pass = "/storage/emulated/0/Pictures/1573437349657.jpg";
-            //var pass = "content://com.android.externalstorage.documents/document/primary%3APictures%2F1573437349657.jpg";
-            var pass = "/sdcard/Pictures/1573437349657.jpg";
+            //var pass = "/storage/emulated/0/Pictures/1573437349657.jpg"
+            //var pass = "content://com.android.externalstorage.documents/document/primary%3APictures%2F1573437349657.jpg"
+            //var pass = "/sdcard/Pictures/1573437349657.jpg"
+            PostImg.uurl = "/sdcard/Pictures/1573437349657.jpg"
             val postTask = PostImg()
-            postTask.execute(pass)
+            postTask.execute()
 
         })
         //ここまで
