@@ -107,6 +107,7 @@ public class PostImg extends AsyncTask<String, String, String> {
         return null;
     }
 
+
     @Override
     protected void onPostExecute(String str) {
         //結果をログに出力(レスポンスのbodyタグ内を出力する)
