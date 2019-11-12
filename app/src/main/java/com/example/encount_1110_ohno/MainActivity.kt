@@ -58,6 +58,9 @@ class MainActivity : AppCompatActivity() {
         val postButton = findViewById<Button>(R.id.postButton)
         val commentInput = findViewById<EditText>(R.id.commentInput)
 
+        //投稿ボタン
+        val postUpload = findViewById<Button>(R.id.postUpload)
+
         // GETボタンがタップされた時
         getButton.setOnClickListener(View.OnClickListener {
             val getTask = OkHttpGet()
@@ -72,6 +75,17 @@ class MainActivity : AppCompatActivity() {
             val postTask = OkHttpPost()
             postTask.execute()
 
+        })
+
+        // 投稿ボタンが押された時 画像
+        postUpload.setOnClickListener(View.OnClickListener {
+
+            //OkHttpPost.cmnt = commentInput.getText().toString()
+            //var pass = "/storage/emulated/0/Pictures/1573437349657.jpg";
+            //var pass = "content://com.android.externalstorage.documents/document/primary%3APictures%2F1573437349657.jpg";
+            var pass = "/sdcard/Pictures/1573437349657.jpg";
+            val postTask = PostImg()
+            postTask.execute(pass)
 
         })
         //ここまで
@@ -156,7 +170,6 @@ class MainActivity : AppCompatActivity() {
         //取得した日時データを「yyyyMMddHHmmss」形式に整形した文字列を生成。
         val nowStr = dateFormat.format(now)
         //ストレージに格納する画像のファイル名を生成。ファイル名の一意を確保するためにタイムスタンプの値を利用。
-
         val fileName = "UseCameraActivityPhoto_${nowStr}.jpg"
 
         /**

@@ -116,7 +116,7 @@
     <!--ファイル名確認用-->
 
     <!--投稿用ボタン-->
-    <!--
+
     <Button
         android:id="@+id/postUpload"
         android:layout_width="wrap_content"
@@ -124,7 +124,7 @@
         android:layout_gravity="center_horizontal"
         android:background="@drawable/partsdesign"
         android:text="投稿"
-        android:visibility="visible" />-->
+        android:visibility="visible" />
     <!--android:onClick="onMapShowCurrentButtonClick"
     android:text="@string/bt_map_current"/>-->
 

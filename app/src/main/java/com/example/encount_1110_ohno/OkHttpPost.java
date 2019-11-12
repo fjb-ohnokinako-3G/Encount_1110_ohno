@@ -18,6 +18,7 @@ import okhttp3.Response;
 
 public class OkHttpPost extends AsyncTask<String,String,String> {
 
+
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     //jsonのサンプルデータ
