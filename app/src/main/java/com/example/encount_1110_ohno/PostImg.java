@@ -87,7 +87,7 @@ public class PostImg extends AsyncTask<String, String, String> {
                 .post(requestBody)
                 .build();
 
-        String result="";
+        //String result="";
         /*try {
             Response response = client.newCall(request).execute();
             if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);

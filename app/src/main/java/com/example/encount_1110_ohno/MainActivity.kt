@@ -27,6 +27,12 @@ import java.text.SimpleDateFormat
 import java.util.Date
 
 /**
+ * やること
+ * ストレージ読み込み権限の許可を取るポップアップを表示する
+ * 
+ */
+
+/**
  * カメラ機能
  */
 class MainActivity : AppCompatActivity() {
@@ -84,7 +90,7 @@ class MainActivity : AppCompatActivity() {
             //var pass = "/storage/emulated/0/Pictures/1573437349657.jpg"
             //var pass = "content://com.android.externalstorage.documents/document/primary%3APictures%2F1573437349657.jpg"
             //var pass = "/sdcard/Pictures/1573437349657.jpg"
-            PostImg.uurl = "/sdcard/Pictures/1573437349657.jpg"
+            PostImg.uurl = "/sdcard/Pictures/1572573402058.jpg"
             //PostImg.uurl = "/sdcard/Download/sample1-s.jpg"
             val postTask = PostImg()
             postTask.execute()
