@@ -26,33 +26,36 @@ import static okhttp3.MultipartBody.FORM;
 
 public class PostImg extends AsyncTask<String, String, String> {
 
-    //送信するコメント内容の受け取り変数
-    //public static String cmnt = "";
-    //写真のパスを受け取る変数
+    //写真のパスを受け取る変数(将来的には撮影した写真のパス、ファイル名を取得して指定する)
     public static String uurl = "";
+
+    //user-id(将来的にはAndroid内のSQLiteから取得)
+    public String userId = "2";
+    //緯度
+    public static String latitude = "35.703092";
+    //経度
+    public static String longitude = "139.985561";
+    //送信するコメント内容の受け取り変数
+    public static String cmnt = "";
 
     @Override
     //POSTするファイルのパスを引数として貰っている
     protected String doInBackground(String... ImagePath) {
         //ポスト先のURL
-
-        //kinako.cfだと、なぜかうまくいかないからここではjunker.cfを使っている
-        //String url = "https://kinako.cf/upimg/upimg.php";
-        String url = "https://junker.cf/testimg/img.php";
+        String url = "https://kinako.cf/encount/img.php";
 
         //写真のパスを取得する
         //File file = new File(ImagePath[0]);
         File file = new File(uurl);
 
-        //ファイルの存在確認(uurlの写真が存在するのか)
-        if(file.exists()){
-            System.out.println("ファイルが存在します。");
-        }else{
-            System.out.println("ファイルが存在しません。");
-        }
-
-        //デバッグ用
-        System.out.println(file);
+            //ファイルの存在確認(uurlの写真が存在するのか)　※デバッグ用
+            if(file.exists()){
+                System.out.println("ファイルが存在します。");
+            }else{
+                System.out.println("ファイルが存在しません。");
+            }
+            //デバッグ用
+            System.out.println(file);
 
         //ここでPOSTする内容を設定　"image/jpg"の部分は送りたいファイルの形式に合わせて変更する
         RequestBody requestBody = new MultipartBody.Builder()
@@ -62,15 +65,6 @@ public class PostImg extends AsyncTask<String, String, String> {
                         file.getName(),
                         RequestBody.create(MediaType.parse("image/jpg"), file))
                 .build();
-
-        //OkHttpClient client = new OkHttpClient();
-        /*OkHttpClient client = new OkHttpClient()
-                .newBuilder()
-                .connectTimeout(10,TimeUnit.SECONDS)
-                .writeTimeout(10,TimeUnit.SECONDS)
-                .readTimeout(30, TimeUnit.SECONDS)
-                .build();
-         */
 
         //タイムアウトの設定
         //デフォルトのままだとタイムアウトしてしまうので、少し大きい値を設定している

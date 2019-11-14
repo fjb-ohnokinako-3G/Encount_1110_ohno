@@ -90,8 +90,17 @@ class MainActivity : AppCompatActivity() {
             //var pass = "/storage/emulated/0/Pictures/1573437349657.jpg"
             //var pass = "content://com.android.externalstorage.documents/document/primary%3APictures%2F1573437349657.jpg"
             //var pass = "/sdcard/Pictures/1573437349657.jpg"
-            PostImg.uurl = "/sdcard/Pictures/1572573402058.jpg"
-            //PostImg.uurl = "/sdcard/Download/sample1-s.jpg"
+            //PostImg.uurl = "/sdcard/Pictures/1572573402058.jpg"
+
+            //写真のパス・名前を指定
+            PostImg.uurl = "/sdcard/Download/sample1-s.jpg"
+            //コメントをEditTextから取得
+            PostImg.cmnt = commentInput.getText().toString()
+            //緯度を取得
+            PostImg.latitude = "35.703092";
+            //経度を取得
+            PostImg.longitude = "139.985561";
+
             val postTask = PostImg()
             postTask.execute()
 
