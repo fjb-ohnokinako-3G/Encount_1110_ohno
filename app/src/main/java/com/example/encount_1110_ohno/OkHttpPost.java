@@ -3,6 +3,8 @@ package com.example.encount_1110_ohno;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
+
+import java.io.File;
 import java.io.IOException;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
@@ -24,6 +26,15 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
     //jsonのサンプルデータ
     //String json = "{\"name\":\"名前\", \"taxis\":\"分類\"}";
 
+    //写真のパスを受け取る変数(将来的には撮影した写真のパス、ファイル名を取得して指定する)
+    public static String uurl = "";
+
+    //user-id(将来的にはAndroid内のSQLiteから取得)
+    public String userId = "2";
+    //緯度
+    public static String latitude = "35.703092";
+    //経度
+    public static String longitude = "139.985561";
     //送信するコメント内容の受け取り変数
     public static String cmnt = "";
 
@@ -33,10 +44,24 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
         OkHttpClient client = new OkHttpClient();
 
         //アクセスするURL
-        String url = "https://kinako.cf/api/pass_check.php";
+        //String url = "https://kinako.cf/api/pass_check.php";
+        String url = "https://kinako.cf/api/upload.php";
 
             //Map<String, String> formParamMap = new HashMap<>();
             //formParamMap.put("word", "abc");
+
+        //写真のパスを取得する
+        //File file = new File(ImagePath[0]);
+        File file = new File(uurl);
+
+        //ファイルの存在確認(uurlの写真が存在するのか)　※デバッグ用
+        if(file.exists()){
+            System.out.println("ファイルが存在します。");
+        }else{
+            System.out.println("ファイルが存在しません。");
+        }
+        //デバッグ用
+        System.out.println(file);
 
         //Formを作成
         final FormBody.Builder formBuilder = new FormBody.Builder();
@@ -44,6 +69,9 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
             //formParamMap.forEach(formBuilder::add);
 
         //formに要素を追加
+        formBuilder.add("userId", userId);
+        formBuilder.add("latitude", latitude);
+        formBuilder.add("longitude", longitude);
         formBuilder.add("word", cmnt);
         //リクエストの内容にformを追加
         RequestBody body = formBuilder.build();
