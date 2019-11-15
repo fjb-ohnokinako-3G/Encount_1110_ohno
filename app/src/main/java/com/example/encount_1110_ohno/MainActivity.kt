@@ -77,13 +77,13 @@ class MainActivity : AppCompatActivity() {
         postButton.setOnClickListener(View.OnClickListener {
 
             //写真のパス・名前を指定
-            PostImg.uurl = "/sdcard/Download/sample1-s.jpg"
+            OkHttpPost.uurl = "/sdcard/Download/sample1-s.jpg"
             //コメントをEditTextから取得
-            PostImg.cmnt = commentInput.getText().toString()
+            OkHttpPost.cmnt = commentInput.getText().toString()
             //緯度を取得
-            PostImg.latitude = "35.703092";
+            OkHttpPost.latitude = "35.703092";
             //経度を取得
-            PostImg.longitude = "139.985561";
+            OkHttpPost.longitude = "139.985561";
 
             val postTask = OkHttpPost()
             postTask.execute()
@@ -105,8 +105,8 @@ class MainActivity : AppCompatActivity() {
             //経度を取得
             PostImg.longitude = "139.985561";
 
-            val postTask = PostImg()
-            postTask.execute()
+            val postImgTask = PostImg()
+            postImgTask.execute()
 
         })
         //ここまで

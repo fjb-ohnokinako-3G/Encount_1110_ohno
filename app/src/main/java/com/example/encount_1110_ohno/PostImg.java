@@ -30,7 +30,7 @@ public class PostImg extends AsyncTask<String, String, String> {
     public static String uurl = "";
 
     //user-id(将来的にはAndroid内のSQLiteから取得)
-    public String id = "2";
+    public String id = String.valueOf(2);;
     //緯度
     public static String latitude = "35.703092";
     //経度
@@ -110,6 +110,6 @@ public class PostImg extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String str) {
         //結果をログに出力(レスポンスのbodyタグ内を出力する)
-        //Log.d("Debug", str);
+        Log.d("Debug", str);
     }
 }
