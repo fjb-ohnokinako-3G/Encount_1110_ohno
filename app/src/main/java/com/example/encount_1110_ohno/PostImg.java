@@ -30,7 +30,7 @@ public class PostImg extends AsyncTask<String, String, String> {
     public static String uurl = "";
 
     //user-id(将来的にはAndroid内のSQLiteから取得)
-    public String userId = "2";
+    public String id = "2";
     //緯度
     public static String latitude = "35.703092";
     //経度
@@ -42,7 +42,8 @@ public class PostImg extends AsyncTask<String, String, String> {
     //POSTするファイルのパスを引数として貰っている
     protected String doInBackground(String... ImagePath) {
         //ポスト先のURL
-        String url = "https://kinako.cf/encount/img.php";
+        //String url = "https://kinako.cf/encount/img.php";
+        String url = "https://kinako.cf/encount/upload.php";
 
         //写真のパスを取得する
         //File file = new File(ImagePath[0]);
@@ -60,6 +61,10 @@ public class PostImg extends AsyncTask<String, String, String> {
         //ここでPOSTする内容を設定　"image/jpg"の部分は送りたいファイルの形式に合わせて変更する
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
+                .addFormDataPart("userId",id)
+                .addFormDataPart("longitude",longitude)
+                .addFormDataPart("latitude",latitude)
+                .addFormDataPart("word",cmnt)
                 .addFormDataPart(
                         "file",
                         file.getName(),

@@ -76,7 +76,14 @@ class MainActivity : AppCompatActivity() {
         // POSTボタンが押された時
         postButton.setOnClickListener(View.OnClickListener {
 
-            OkHttpPost.cmnt = commentInput.getText().toString()
+            //写真のパス・名前を指定
+            PostImg.uurl = "/sdcard/Download/sample1-s.jpg"
+            //コメントをEditTextから取得
+            PostImg.cmnt = commentInput.getText().toString()
+            //緯度を取得
+            PostImg.latitude = "35.703092";
+            //経度を取得
+            PostImg.longitude = "139.985561";
 
             val postTask = OkHttpPost()
             postTask.execute()

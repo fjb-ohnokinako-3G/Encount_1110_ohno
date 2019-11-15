@@ -30,7 +30,7 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
     public static String uurl = "";
 
     //user-id(将来的にはAndroid内のSQLiteから取得)
-    public String userId = "2";
+    public String id = "2";
     //緯度
     public static String latitude = "35.703092";
     //経度
@@ -69,7 +69,7 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
             //formParamMap.forEach(formBuilder::add);
 
         //formに要素を追加
-        formBuilder.add("userId", userId);
+        formBuilder.add("id", id);
         formBuilder.add("latitude", latitude);
         formBuilder.add("longitude", longitude);
         formBuilder.add("word", cmnt);
@@ -86,6 +86,7 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
 
         try {
             Response response = client.newCall(request).execute();
+            System.out.println(response.body().string());
             return response.body().string();
         } catch (IOException e) {
             e.printStackTrace();
