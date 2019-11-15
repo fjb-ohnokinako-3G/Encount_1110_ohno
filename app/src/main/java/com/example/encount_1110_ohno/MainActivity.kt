@@ -25,6 +25,13 @@ import androidx.core.app.ActivityCompat.startActivityForResult
 import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
 import java.util.Date
+import android.content.ContentResolver
+import android.database.Cursor
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import java.io.File
+
 
 /**
  * やること
@@ -60,18 +67,18 @@ class MainActivity : AppCompatActivity() {
          * 投稿ボタン押すと動作する
          */
         // GETボタンとPOSTボタン取得
-        val getButton = findViewById<Button>(R.id.getButton)
+        //val getButton = findViewById<Button>(R.id.getButton)
         val postButton = findViewById<Button>(R.id.postButton)
         val commentInput = findViewById<EditText>(R.id.commentInput)
 
         //投稿ボタン
-        val postUpload = findViewById<Button>(R.id.postUpload)
+        //val postUpload = findViewById<Button>(R.id.postUpload)
 
         // GETボタンがタップされた時
-        getButton.setOnClickListener(View.OnClickListener {
+        /*getButton.setOnClickListener(View.OnClickListener {
             val getTask = OkHttpGet()
             getTask.execute()
-        })
+        })*/
 
         // POSTボタンが押された時
         postButton.setOnClickListener(View.OnClickListener {
@@ -85,12 +92,15 @@ class MainActivity : AppCompatActivity() {
             //経度を取得
             OkHttpPost.longitude = "139.985561";
 
+            OkHttpPost.basyo = _imageUri;
+
             val postTask = OkHttpPost()
             postTask.execute()
 
         })
 
         // 投稿ボタンが押された時 画像
+        /*
         postUpload.setOnClickListener(View.OnClickListener {
 
             //var pass = "/sdcard/Pictures/1573437349657.jpg"
@@ -108,7 +118,7 @@ class MainActivity : AppCompatActivity() {
             val postImgTask = PostImg()
             postImgTask.execute()
 
-        })
+        })*/
         //ここまで
 
         /**
@@ -136,11 +146,11 @@ class MainActivity : AppCompatActivity() {
         //カメラアプリからの戻りでかつ撮影成功の場合
         if(requestCode == 200 && resultCode == RESULT_OK) {
             //撮影された画像のビットマップデータを取得。
-            //val bitmap = data?.getParcelableExtra<Bitmap>("data")
+            val bitmap = data?.getParcelableExtra<Bitmap>("data")
             //画像を表示するImageViewを取得。
             val ivCamera = findViewById<ImageView>(R.id.ivCamera)
             //撮影された画像をImageViewに設定。
-            //ivCamera.setImageBitmap(bitmap)
+            ivCamera.setImageBitmap(bitmap)
             //フィールドの画像URIをImageViewに設定。
             ivCamera.setImageURI(_imageUri)
         }
@@ -197,7 +207,7 @@ class MainActivity : AppCompatActivity() {
          * 画面要素にファイル名を表示するための変数
          */
         val ffn = findViewById<TextView>(R.id.tvWeatherDesc)
-        tvWeatherDesc.text = fileName
+        //tvWeatherDesc.text = fileName
 
         //ContentValuesオブジェクトを生成。
         val values = ContentValues()
@@ -208,6 +218,17 @@ class MainActivity : AppCompatActivity() {
 
         //ContentResolverを使ってURIオブジェクトを生成。
         _imageUri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+
+        //val myPhoto = File(_imageUri.toString())
+        //System.out.println(myPhoto.absolutePath)
+        //System.out.println(myPhoto.absoluteFile)
+        /*
+        val Myp = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+        System.out.println(Myp)
+        val Myp2 = File(Myp.toString())
+        System.out.println(Myp2.absolutePath)
+        System.out.println(Myp2.absoluteFile)*/
+
         //Intentオブジェクトを生成。
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         //Extra情報として_imageUriを設定。
@@ -215,6 +236,7 @@ class MainActivity : AppCompatActivity() {
         //アクティビティを起動。
         startActivityForResult(intent, 200)
     }
+
 
     /**
      * ロケーションリスナクラス。

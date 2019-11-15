@@ -116,7 +116,7 @@
     <!--ファイル名確認用-->
 
     <!--投稿用ボタン-->
-
+    <!--
     <Button
         android:id="@+id/postUpload"
         android:layout_width="wrap_content"
@@ -124,7 +124,7 @@
         android:layout_gravity="center_horizontal"
         android:background="@drawable/partsdesign"
         android:text="投稿"
-        android:visibility="visible" />
+        android:visibility="visible" />-->
     <!--android:onClick="onMapShowCurrentButtonClick"
     android:text="@string/bt_map_current"/>-->
 
@@ -135,7 +135,7 @@
         android:layout_width="match_parent"
         android:layout_height="33dp"
         android:textSize="15sp" />
-
+    <!--
     <Button
         android:id="@+id/getButton"
         android:layout_width="wrap_content"
@@ -148,14 +148,14 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="86dp" />
+        tools:layout_editor_absoluteY="86dp" />-->
 
     <Button
         android:id="@+id/postButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="POST"
+        android:text="投稿(POST)"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.117"
         app:layout_constraintLeft_toLeftOf="parent"

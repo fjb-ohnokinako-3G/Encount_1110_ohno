@@ -1,5 +1,6 @@
 package com.example.encount_1110_ohno;
 
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
@@ -24,7 +25,7 @@ import okhttp3.Response;
 public class OkHttpPost extends AsyncTask<String,String,String> {
 
 
-    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    //public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     //jsonのサンプルデータ
     //String json = "{\"name\":\"名前\", \"taxis\":\"分類\"}";
@@ -41,8 +42,13 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
     //送信するコメント内容の受け取り変数
     public static String cmnt = "";
 
+    //写真の保存先デバッグ用
+    public static Uri basyo = null;
+
     @Override
     protected String doInBackground(String... strings) {
+
+        System.out.println("場所は："+basyo);
 
         //アクセスするURL
         //String url = "https://kinako.cf/api/pass_check.php";
