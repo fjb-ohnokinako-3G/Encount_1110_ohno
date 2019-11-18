@@ -20,4 +20,7 @@ public class ImageGet {
         return path;
     }
 
+    //File myFile = new File(uri.toString());
+    //myFile.getAbsolutePath()
+
 }
