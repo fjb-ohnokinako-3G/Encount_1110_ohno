@@ -153,6 +153,8 @@ class MainActivity : AppCompatActivity() {
             ivCamera.setImageBitmap(bitmap)
             //フィールドの画像URIをImageViewに設定。
             ivCamera.setImageURI(_imageUri)
+
+            System.out.println(_imageUri)
         }
     }
 
@@ -219,9 +221,16 @@ class MainActivity : AppCompatActivity() {
         //ContentResolverを使ってURIオブジェクトを生成。
         _imageUri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
 
-        //val myPhoto = File(_imageUri.toString())
-        //System.out.println(myPhoto.absolutePath)
-        //System.out.println(myPhoto.absoluteFile)
+        /*
+        var aiueo = contentResolver.query(MediaStore.Images.Media.INTERNAL_CONTENT_URI,null,null,null,null)
+        System.out.println("変換")
+        System.out.println(aiueo)
+        System.out.println(aiueo.toString())*/
+
+        /*val myPhoto = File(_imageUri.toString())
+        System.out.println(myPhoto.absolutePath)
+        System.out.println(myPhoto.absoluteFile)*/
+
         /*
         val Myp = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
         System.out.println(Myp)
@@ -229,12 +238,21 @@ class MainActivity : AppCompatActivity() {
         System.out.println(Myp2.absolutePath)
         System.out.println(Myp2.absoluteFile)*/
 
+        /*
+        System.out.println(_imageUri.toString())
+        var aaa = _imageUri.toString()
+        System.out.println(_imageUri.toString())
+    */
+
         //Intentオブジェクトを生成。
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         //Extra情報として_imageUriを設定。
         intent.putExtra(MediaStore.EXTRA_OUTPUT, _imageUri)
         //アクティビティを起動。
         startActivityForResult(intent, 200)
+
+        //var test = ImageGet.getPath(values,_imageUri)
+        //System.out.println(test)
     }
 
 
