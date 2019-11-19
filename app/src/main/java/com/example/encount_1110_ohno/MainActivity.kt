@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
             OkHttpPost.basyo = _imageUri;
 
             val postTask = OkHttpPost()
-            postTask.execute()
+            postTask.execute(uuri.toString())
 
         })
 

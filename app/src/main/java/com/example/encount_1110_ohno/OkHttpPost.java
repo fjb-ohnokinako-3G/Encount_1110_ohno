@@ -46,14 +46,10 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
     public static Uri basyo = null;
 
     @Override
-    protected String doInBackground(String... strings) {
-
-        //System.out.println("場所は："+basyo);
+    //protected String doInBackground(String... strings) {
+    /*protected*/public String doInBackground(String... ImagePath) {
 
         //アクセスするURL
-        //String url = "https://kinako.cf/api/pass_check.php";
-        //String url = "https://kinako.cf/api/upload.php";
-        //String url = "https://kinako.cf/encount/upload.php";
         String url = "https://kinako.cf/encount/PostPhoto.php";
 
 
@@ -61,20 +57,12 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
             //formParamMap.put("word", "abc");
 
         //写真のパスを取得する
-        //File file = new File(ImagePath[0]);
-        File file = new File(uurl);
-        /**
-         * https://www.sejuku.net/blog/24786を見て続ける
-         */
+        File file2 = new File(ImagePath[0]);
 
-        /**
-         * ここ作業中
-         */
-        //ファイルパスを取得する
+        //ファイル(写真)パスを取得する
+        /*//File file = new File(uurl);
         String str = file.getAbsolutePath();
         System.out.println("pass : " + str);
-
-
         //ファイルの存在確認(uurlの写真が存在するのか)　※デバッグ用
         if(file.exists()){
             System.out.println("ファイルが存在します。");
@@ -83,7 +71,11 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
         }
         //デバッグ用
         System.out.println(file);
+        */
 
+        String pass = "/sdcard/Pictures/";
+        pass = pass + file2.getName() ;
+        System.out.println("結合後の："+pass);
 
         /**
          * ここから旧処理
@@ -123,8 +115,8 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
                 .addFormDataPart("word",cmnt)
                 .addFormDataPart(
                         "file",
-                        file.getName(),
-                        RequestBody.create(MediaType.parse("image/jpg"), file))
+                        file2.getName(),
+                        RequestBody.create(MediaType.parse("image/jpg"), pass))
                 .build();
 
         //タイムアウトの設定
