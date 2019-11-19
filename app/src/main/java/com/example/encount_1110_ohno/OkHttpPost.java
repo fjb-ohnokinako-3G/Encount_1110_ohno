@@ -63,7 +63,17 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
         //写真のパスを取得する
         //File file = new File(ImagePath[0]);
         File file = new File(uurl);
-        //https://www.sejuku.net/blog/24786
+        /**
+         * https://www.sejuku.net/blog/24786を見て続ける
+         */
+
+        /**
+         * ここ作業中
+         */
+        //ファイルパスを取得する
+        String str = file.getAbsolutePath();
+        System.out.println("pass : " + str);
+
 
         //ファイルの存在確認(uurlの写真が存在するのか)　※デバッグ用
         if(file.exists()){
