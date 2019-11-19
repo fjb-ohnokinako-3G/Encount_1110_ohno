@@ -1,9 +1,7 @@
 package com.example.encount_1110_ohno
 
 import android.Manifest
-import android.content.ContentValues
-import android.content.Context
-import android.content.Intent
+import android.content.*
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.location.Location
@@ -25,7 +23,6 @@ import androidx.core.app.ActivityCompat.startActivityForResult
 import kotlinx.android.synthetic.main.activity_main.*
 import java.text.SimpleDateFormat
 import java.util.Date
-import android.content.ContentResolver
 import android.database.Cursor
 import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
@@ -47,6 +44,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * 保存された画像のURI
      */
+    //private var _imageUri: Uri? = null
     private var _imageUri: Uri? = null
 
     /**
@@ -84,7 +82,14 @@ class MainActivity : AppCompatActivity() {
         postButton.setOnClickListener(View.OnClickListener {
 
             //写真のパス・名前を指定
-            OkHttpPost.uurl = "/sdcard/Download/sample1-s.jpg"
+            //OkHttpPost.uurl = "/sdcard/Download/sample1-s.jpg"
+
+            //パスの処理
+            val uuri = getFileSchemeUri(_imageUri as Uri)
+            println(uuri.toString())
+            OkHttpPost.uurl = uuri.toString()
+
+
             //コメントをEditTextから取得
             OkHttpPost.cmnt = commentInput.getText().toString()
             //緯度を取得
@@ -154,7 +159,16 @@ class MainActivity : AppCompatActivity() {
             //フィールドの画像URIをImageViewに設定。
             ivCamera.setImageURI(_imageUri)
 
-            System.out.println(_imageUri)
+            //デバッグ用
+            System.out.println("変換前"+_imageUri)
+
+            /**
+             * ここの処理
+             */
+            val uuri = getFileSchemeUri(_imageUri as Uri)
+            println("変換後："+uuri.toString())
+
+
         }
     }
 
@@ -221,38 +235,12 @@ class MainActivity : AppCompatActivity() {
         //ContentResolverを使ってURIオブジェクトを生成。
         _imageUri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
 
-        /*
-        var aiueo = contentResolver.query(MediaStore.Images.Media.INTERNAL_CONTENT_URI,null,null,null,null)
-        System.out.println("変換")
-        System.out.println(aiueo)
-        System.out.println(aiueo.toString())*/
-
-        /*val myPhoto = File(_imageUri.toString())
-        System.out.println(myPhoto.absolutePath)
-        System.out.println(myPhoto.absoluteFile)*/
-
-        /*
-        val Myp = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
-        System.out.println(Myp)
-        val Myp2 = File(Myp.toString())
-        System.out.println(Myp2.absolutePath)
-        System.out.println(Myp2.absoluteFile)*/
-
-        /*
-        System.out.println(_imageUri.toString())
-        var aaa = _imageUri.toString()
-        System.out.println(_imageUri.toString())
-    */
-
         //Intentオブジェクトを生成。
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         //Extra情報として_imageUriを設定。
         intent.putExtra(MediaStore.EXTRA_OUTPUT, _imageUri)
         //アクティビティを起動。
         startActivityForResult(intent, 200)
-
-        //var test = ImageGet.getPath(values,_imageUri)
-        //System.out.println(test)
     }
 
 
@@ -278,6 +266,44 @@ class MainActivity : AppCompatActivity() {
         override fun onProviderEnabled(provider: String) {}
 
         override fun onProviderDisabled(provider: String) {}
+    }
+
+    /**
+     * URIをFileスキームのURIに変換する.
+     * @param uri 変換前のURI  例) content://media/external/images/media/33
+     * @return 変換後のURI     例) file:///storage/sdcard/test1.jpg
+     */
+    private fun getFileSchemeUri(uri: Uri): Uri {
+        var fileSchemeUri = uri
+        val path = getPath(uri)
+        fileSchemeUri = Uri.fromFile(File(path))
+        return fileSchemeUri
+    }
+
+    /**
+     * URIからファイルPATHを取得する.
+     * @param uri URI
+     * @return ファイルPATH
+     */
+    private fun getPath(uri: Uri): String {
+        var path = uri.toString()
+        if (path.matches("^file:.*".toRegex())) {
+            return path.replaceFirst("file://".toRegex(), "")
+        } else if (!path.matches("^content:.*".toRegex())) {
+            return path
+        }
+        val context = applicationContext
+        val contentResolver = context.contentResolver
+        val columns = arrayOf(MediaStore.Images.Media.DATA)
+        val cursor = contentResolver.query(uri, columns, null, null, null)
+        if (cursor != null) {
+            if (cursor.count > 0) {
+                cursor.moveToFirst()
+                path = cursor.getString(0)
+            }
+            cursor.close()
+        }
+        return path
     }
 
 

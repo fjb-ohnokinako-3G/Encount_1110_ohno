@@ -48,7 +48,7 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
     @Override
     protected String doInBackground(String... strings) {
 
-        System.out.println("場所は："+basyo);
+        //System.out.println("場所は："+basyo);
 
         //アクセスするURL
         //String url = "https://kinako.cf/api/pass_check.php";
@@ -63,6 +63,7 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
         //写真のパスを取得する
         //File file = new File(ImagePath[0]);
         File file = new File(uurl);
+        //https://www.sejuku.net/blog/24786
 
         //ファイルの存在確認(uurlの写真が存在するのか)　※デバッグ用
         if(file.exists()){
