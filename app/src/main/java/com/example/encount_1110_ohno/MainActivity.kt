@@ -93,9 +93,11 @@ class MainActivity : AppCompatActivity() {
             //コメントをEditTextから取得
             OkHttpPost.cmnt = commentInput.getText().toString()
             //緯度を取得
-            OkHttpPost.latitude = "35.703092";
+            //OkHttpPost.latitude = "35.703092"
+            OkHttpPost.latitude = _latitude.toString()
             //経度を取得
-            OkHttpPost.longitude = "139.985561";
+            //OkHttpPost.longitude = "139.985561"
+            OkHttpPost.longitude = _longitude.toString()
 
             OkHttpPost.basyo = _imageUri;
 

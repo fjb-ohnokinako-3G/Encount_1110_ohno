@@ -36,9 +36,9 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
     //user-id(将来的にはAndroid内のSQLiteから取得)
     public String id = String.valueOf(1);;
     //緯度
-    public static String latitude = "35.703092";
+    public static String latitude = "";
     //経度
-    public static String longitude = "139.985561";
+    public static String longitude = "";
     //送信するコメント内容の受け取り変数
     public static String cmnt = "";
 
