@@ -163,7 +163,7 @@ class MainActivity : AppCompatActivity() {
             System.out.println("変換前"+_imageUri)
 
             /**
-             * ここの処理
+             * ここで一番下のメソッドを利用して、パスを取得する
              */
             val uuri = getFileSchemeUri(_imageUri as Uri)
             println("変換後："+uuri.toString())

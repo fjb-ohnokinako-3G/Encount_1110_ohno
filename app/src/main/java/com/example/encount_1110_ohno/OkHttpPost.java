@@ -59,7 +59,7 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
         //写真のパスを取得する
         File file2 = new File(ImagePath[0]);
 
-        //ファイル(写真)パスを取得する
+        //　ここは消さない！　ファイル(写真)パスを取得する
         /*//File file = new File(uurl);
         String str = file.getAbsolutePath();
         System.out.println("pass : " + str);
@@ -73,7 +73,9 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
         System.out.println(file);
         */
 
+        //パスを設定
         String pass = "/sdcard/Pictures/";
+        //ファイル名を取得
         pass = pass + file2.getName() ;
         System.out.println("結合後の："+pass);
 
