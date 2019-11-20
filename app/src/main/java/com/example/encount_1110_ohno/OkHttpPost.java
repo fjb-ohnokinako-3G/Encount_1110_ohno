@@ -24,7 +24,6 @@ import okhttp3.Response;
 
 public class OkHttpPost extends AsyncTask<String,String,String> {
 
-
     //public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     //jsonのサンプルデータ
@@ -47,20 +46,20 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
 
     @Override
     //protected String doInBackground(String... strings) {
-    /*protected*/public String doInBackground(String... ImagePath) {
+    public String doInBackground(String... ImagePath) {
 
         //アクセスするURL
         String url = "https://kinako.cf/encount/PostPhoto.php";
-
+        //String url = "https://kinako.cf/img.php";
 
             //Map<String, String> formParamMap = new HashMap<>();
             //formParamMap.put("word", "abc");
 
         //写真のパスを取得する
-        File file2 = new File(ImagePath[0]);
+        //File file2 = new File(ImagePath[0]);
 
         //　ここは消さない！　ファイル(写真)パスを取得する
-        /*//File file = new File(uurl);
+        File file = new File(uurl);
         String str = file.getAbsolutePath();
         System.out.println("pass : " + str);
         //ファイルの存在確認(uurlの写真が存在するのか)　※デバッグ用
@@ -71,13 +70,13 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
         }
         //デバッグ用
         System.out.println(file);
-        */
+
 
         //パスを設定
-        String pass = "/sdcard/Pictures/";
+        //String pass = "/sdcard/Pictures/";
         //ファイル名を取得
-        pass = pass + file2.getName() ;
-        System.out.println("結合後の："+pass);
+        //pass = pass + file2.getName() ;
+        //System.out.println("結合後の："+pass);
 
         /**
          * ここから旧処理
@@ -109,7 +108,7 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
          */
 
         //ここでPOSTする内容を設定　"image/jpg"の部分は送りたいファイルの形式に合わせて変更する
-        RequestBody requestBody = new MultipartBody.Builder()
+        /*RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("userId",id)
                 .addFormDataPart("longitude",longitude)
@@ -118,7 +117,19 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
                 .addFormDataPart(
                         "file",
                         file2.getName(),
-                        RequestBody.create(MediaType.parse("image/jpg"), pass))
+                        RequestBody.create(MediaType.parse("image/jpg"), file2))
+                .build();*/
+
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("userId",id)
+                .addFormDataPart("longitude",longitude)
+                .addFormDataPart("latitude",latitude)
+                .addFormDataPart("word",cmnt)
+                .addFormDataPart(
+                        "file",
+                        file.getName(),
+                        RequestBody.create(MediaType.parse("image/jpg"), file))
                 .build();
 
         //タイムアウトの設定

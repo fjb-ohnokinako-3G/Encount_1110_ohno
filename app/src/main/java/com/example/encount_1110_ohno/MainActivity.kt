@@ -82,12 +82,12 @@ class MainActivity : AppCompatActivity() {
         postButton.setOnClickListener(View.OnClickListener {
 
             //写真のパス・名前を指定
-            //OkHttpPost.uurl = "/sdcard/Download/sample1-s.jpg"
+            OkHttpPost.uurl = "/sdcard/Download/sample1-s.jpg"
 
             //パスの処理
-            val uuri = getFileSchemeUri(_imageUri as Uri)
+            /*val uuri = getFileSchemeUri(_imageUri as Uri)
             println(uuri.toString())
-            OkHttpPost.uurl = uuri.toString()
+            OkHttpPost.uurl = uuri.toString()*/
 
 
             //コメントをEditTextから取得
@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity() {
             OkHttpPost.basyo = _imageUri;
 
             val postTask = OkHttpPost()
-            postTask.execute(uuri.toString())
+            postTask.execute(/*uuri.toString()*/)
 
         })
 
