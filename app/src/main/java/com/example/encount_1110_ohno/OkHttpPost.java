@@ -61,7 +61,7 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
         pass = pass + uurl;
         //pass = pass + file2.getName() ;
         //System.out.println("結合後の："+pass);
-
+        //pass = "/storage/emulated/0/Pictures/1574260227092.jpg";
         //写真のパスを取得する
         //File file2 = new File(ImagePath[0]);
         File file2 = new File(pass);
