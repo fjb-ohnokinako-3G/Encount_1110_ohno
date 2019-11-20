@@ -82,13 +82,16 @@ class MainActivity : AppCompatActivity() {
         postButton.setOnClickListener(View.OnClickListener {
 
             //写真のパス・名前を指定
-            OkHttpPost.uurl = "/sdcard/Download/sample1-s.jpg"
+            //OkHttpPost.uurl = "/sdcard/Download/sample1-s.jpg"
+            //OkHttpPost.uurl = "/sdcard/Pictures/1573437349657.jpg"
 
             //パスの処理
-            /*val uuri = getFileSchemeUri(_imageUri as Uri)
+            val uuri = getFileSchemeUri(_imageUri as Uri)
             println(uuri.toString())
-            OkHttpPost.uurl = uuri.toString()*/
-
+            //OkHttpPost.uurl = uuri.toString()
+            var pass = uuri.toString().substring(uuri.toString().length - 17)
+            print(pass)
+            OkHttpPost.uurl = pass
 
             //コメントをEditTextから取得
             OkHttpPost.cmnt = commentInput.getText().toString()

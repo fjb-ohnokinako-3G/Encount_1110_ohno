@@ -55,21 +55,37 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
             //Map<String, String> formParamMap = new HashMap<>();
             //formParamMap.put("word", "abc");
 
+        //パスを設定
+        String pass = "/sdcard/Pictures/";
+        //ファイル名を取得
+        pass = pass + uurl;
+        //pass = pass + file2.getName() ;
+        //System.out.println("結合後の："+pass);
+
         //写真のパスを取得する
         //File file2 = new File(ImagePath[0]);
-
-        //　ここは消さない！　ファイル(写真)パスを取得する
-        File file = new File(uurl);
-        String str = file.getAbsolutePath();
+        File file2 = new File(pass);
+        String str = file2.getAbsolutePath();
         System.out.println("pass : " + str);
         //ファイルの存在確認(uurlの写真が存在するのか)　※デバッグ用
-        if(file.exists()){
+        if(file2.exists()){
+            System.out.println("ファイルが存在します。");
+        }else{
+            System.out.println("ファイルが存在しません。");
+        }
+
+        //　ここは消さない！　ファイル(写真)パスを取得する
+        //File file = new File(uurl);
+        //String str = file.getAbsolutePath();
+        //System.out.println("pass : " + str);
+        //ファイルの存在確認(uurlの写真が存在するのか)　※デバッグ用
+        /*if(file.exists()){
             System.out.println("ファイルが存在します。");
         }else{
             System.out.println("ファイルが存在しません。");
         }
         //デバッグ用
-        System.out.println(file);
+        System.out.println(file);*/
 
 
         //パスを設定
@@ -108,7 +124,7 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
          */
 
         //ここでPOSTする内容を設定　"image/jpg"の部分は送りたいファイルの形式に合わせて変更する
-        /*RequestBody requestBody = new MultipartBody.Builder()
+        RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("userId",id)
                 .addFormDataPart("longitude",longitude)
@@ -118,9 +134,9 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
                         "file",
                         file2.getName(),
                         RequestBody.create(MediaType.parse("image/jpg"), file2))
-                .build();*/
+                .build();
 
-        RequestBody requestBody = new MultipartBody.Builder()
+        /*RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("userId",id)
                 .addFormDataPart("longitude",longitude)
@@ -130,7 +146,7 @@ public class OkHttpPost extends AsyncTask<String,String,String> {
                         "file",
                         file.getName(),
                         RequestBody.create(MediaType.parse("image/jpg"), file))
-                .build();
+                .build();*/
 
         //タイムアウトの設定
         //デフォルトのままだとタイムアウトしてしまうので、少し大きい値を設定している
